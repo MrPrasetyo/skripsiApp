@@ -14,7 +14,7 @@
 
 
 @section('content')
-    @include('partials.navbar');
+    @include('partials.navbar')
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -95,7 +95,7 @@
                                     </td>
 
                                 </tr>
-                                @include('layouts.modaledit');
+                                @include('layouts.modaledit')
                             @empty
                                 <tr>
                                     <td>No data Available</td>

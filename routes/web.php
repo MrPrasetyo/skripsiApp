@@ -31,6 +31,7 @@ Route::put('/updateData/{id}', [dashboardController::class, 'updateData'])->name
 
 // Delete Data
 Route::delete('/deleteData', [dashboardController::class, 'deleteData'])->name('deleteData');
+Route::delete('/batalkanPengajuan', [pengajuanController::class, 'batalkanPengajuan'])->name('batalkanPengajuan');
 
 // Tambah Data
 Route::post('/addData',[dashboardController::class, 'addData'])->name('addData');

@@ -2,16 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '{{ session('success') }}',
-        });
-    </script>
-@endif
-
 @section('content')
     @include('partials.navbar');
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
@@ -41,36 +31,37 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col" class="px-4 py-3">Nomor Plat</th>
                                 <th scope="col" class="px-4 py-3">Nama Pemilik</th>
                                 <th scope="col" class="px-4 py-3">Merk</th>
                                 <th scope="col" class="px-4 py-3">Type</th>
                                 <th scope="col" class="px-4 py-3">Tahun</th>
-                                <th scope="col" class="px-4 py-3">Actions</th>
+                                <th scope="col" class="px-4 py-3">Status</th>
                                 <th scope="col" class="px-4 py-3">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($data as $item)
-                                <tr class="border-b dark:border-gray-700">
+                                <tr class="border-b dark:border-gray-700 text-center items-center justify-center">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $item->user_id }}</th>
-                                    <td class="px-4 py-3">{{ $item->kendaraan_id }}</td>
+                                        {{ $item->nomor_plat }}</th>
+                                    <td class="px-4 py-3">{{ $item->name }}</td>
+                                    <td class="px-4 py-3">{{ $item->merk }}</td>
+                                    <td class="px-4 py-3">{{ $item->type }}</td>
+                                    <td class="px-4 py-3">{{ $item->tahun }}</td>
                                     <td class="px-4 py-3">{{ $item->status }}</td>
-                                    <td class="px-4 py-3">{{ $item->created_at }}</td>
-                                    <td class="px-4 py-3">{{ $item->user_id }}</td>
-                                    <td class="px-4 py-3 items-center">
-                                        <button
-                                            class="btnSendData px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
-                                            data-id="{{ $item->id }}">Edit</button>
-                                    </td>
-                                    <td class="px-4 py-3 flex items-center">
-                                        <button
-                                            class="BtnModalEdit px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
-                                            data-modal-target="ModalEdit" data-modal-toggle="ModalEdit"
-                                            data-id="{{ $item->id }}">Edit</button>
+                                    <td class="px-4 py-3 flex items-center justify-center w-full">
+                                        <form action="{{ route('batalkanPengajuan') }}" id="deletePengajuan" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="pengajuanId" value="{{ $item->id }}"
+                                                id="pengajuanId">
+                                            <button type="submit"
+                                                class="btnBatalPengajuan px-4 py-2 bg-red-700 text-bold text-white rounded-xl hover:bg-red-800"
+                                                data-id="{{ $item->id }}">Batal</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
@@ -139,6 +130,21 @@
             </div>
         </div>
     </section>
-
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+    @section('script')
+        <script>
+            $('#btnBatalPengajuan').on('click', function() {
+                $('#deletePengajuan').submit();
+            });
+        </script>
+    @endsection
 
 @endsection
