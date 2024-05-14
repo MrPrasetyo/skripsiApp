@@ -62,8 +62,8 @@
                                 <th scope="col" class="px-4 py-3">Merk</th>
                                 <th scope="col" class="px-4 py-3">Type</th>
                                 <th scope="col" class="px-4 py-3">Tahun</th>
-                                <th scope="col" class="px-4 py-3">Actions</th>
-                                <th scope="col" class="px-4 py-3">Actions</th>
+                                <th scope="col" class="px-6 py-3 ">Actions</th>
+                                <th scope="col" class="px-4 py-3 ">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,12 +76,18 @@
                                     <td class="px-4 py-3">{{ $item->merk }}</td>
                                     <td class="px-4 py-3">{{ $item->type }}</td>
                                     <td class="px-4 py-3">{{ $item->tahun }}</td>
-                                    <td class="px-4 py-3 items-center">
-                                        <button
-                                            class="btnSendData px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
-                                            data-id="{{ $item->id }}">Edit</button>
+                                    <td class="px-3 py-3 flex-row justify-center items-center">
+                                        <form id="submitForm" action="{{ route('submitDataPengajuan') }}">
+                                            @csrf
+                                            @method('POST')
+                                            <input type="hidden" name="kendaraan_id" id="kendaraan_id"
+                                                value="{{ $item->id }}">
+                                            <button type="submit"
+                                                class="btnSendData px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
+                                                data-id="{{ $item->id }}">Ajukan</button>
+                                        </form>
                                     </td>
-                                    <td class="px-4 py-3 flex items-center">
+                                    <td class="px-3 py-3 flex-row justify-center items-center">
                                         <button
                                             class="BtnModalEdit px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
                                             data-modal-target="ModalEdit" data-modal-toggle="ModalEdit"
@@ -98,58 +104,35 @@
                         </tbody>
                     </table>
                 </div>
-                <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
-                    aria-label="Table navigation">
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">1000</span>
-                    </span>
-                    <ul class="inline-flex items-stretch -space-x-px">
+                <nav aria-label="Page navigation example">
+                    <ul class="inline-flex -space-x-px text-sm py-3 px-4">
                         <li>
                             <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Previous</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
                         </li>
                         <li>
-                            <a href="#" aria-current="page"
-                                class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                            <a href="#" 
+                                class="flex items-center justify-center px-3 h-8 text-gray-700 border border-gray-300 bg-white hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Next</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                         </li>
                     </ul>
                 </nav>
@@ -158,27 +141,17 @@
     </section>
     @section('script')
         <script>
+            document.getElementById('btnSendData').addEventListener('click', function() {
+                var kendaraanId = this.getAttribute('data-id');
+                document.getElementById('kendaraan_id').value = kendaraanId;
+                document.getElementById('submitForm').submit();
+            });
+
             document.addEventListener("DOMContentLoaded", function(event) {
                 document.getElementById('BtnModalTambah').click();
             });
 
-            $(document).ready(function() {
-                $('.btnSendData').on('click', function() {
-                    var dataId = $(this).attr('data-id');
-                    $.ajax({
-                        type: "GET",
-                        url: "{{route('getDataEdit') }}",
-                        data: {
-                            id: dataId
-                        },
-                        dataType: "JSON",
-                        success: function(response) {
-                            
-                        }
-                    })
-                })
 
-            });
 
             $(document).ready(function() {
                 $('.BtnModalEdit').on('click', function() {
