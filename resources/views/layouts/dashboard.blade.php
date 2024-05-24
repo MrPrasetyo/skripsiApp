@@ -119,7 +119,7 @@
                                 class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
                         </li>
                         <li>
-                            <a href="#" 
+                            <a href="#"
                                 class="flex items-center justify-center px-3 h-8 text-gray-700 border border-gray-300 bg-white hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
                         </li>
                         <li>
@@ -139,59 +139,66 @@
             </div>
         </div>
     </section>
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
     @section('script')
         <script>
-            document.getElementById('btnSendData').addEventListener('click', function() {
-                var kendaraanId = this.getAttribute('data-id');
-                document.getElementById('kendaraan_id').value = kendaraanId;
-                document.getElementById('submitForm').submit();
-            });
-
-            document.addEventListener("DOMContentLoaded", function(event) {
-                document.getElementById('BtnModalTambah').click();
-            });
 
 
 
-            $(document).ready(function() {
-                $('.BtnModalEdit').on('click', function() {
-                    var dataId = $(this).attr('data-id');
-                    $.ajax({
-                        type: "GET",
-                        url: "{{ route('getDataEdit') }}",
-                        data: {
-                            id: dataId
-                        },
-                        dataType: "JSON",
-                        success: function(response) {
-                            $('#nomor_plat').val(response.nomor_plat);
-                            $('#nama_pemilik').val(response.nama_pemilik);
-                            $('#alamat_pemilik').val(response.alamat_pemilik);
-                            $('#merk').val(response.merk);
-                            $('#type').val(response.type);
-                            $('#jenis').val(response.jenis);
-                            $('#model').val(response.model);
-                            $('#warna').val(response.warna);
-                            $('#tahun').val(response.tahun);
-                            $('#isi_silinder').val(response.isi_silinder);
-                            $('#nomor_mesin').val(response.nomor_mesin);
-                            $('#nomor_rangka').val(response.nomor_rangka);
-                            $('#updateId').val(response.id); // Set id untuk update
-                            $('#deleteId').val(response.id); // Set id untuk delete
-                        }
-                    });
-                });
+                        $(document).ready(function() {
+                            $('.BtnModalEdit').on('click', function() {
+                                let dataId = $(this).attr('data-id');
+                                $.ajax({
+                                    type: "GET",
+                                    url: "{{ route('getDataEdit') }}",
+                                    data: {
+                                        id: dataId
+                                    },
+                                    dataType: "JSON",
+                                    success: function(response) {
+                                        $('#nomor_plat').val(response.nomor_plat);
+                                        $('#nama_pemilik').val(response.nama_pemilik);
+                                        $('#alamat_pemilik').val(response.alamat_pemilik);
+                                        $('#merk').val(response.merk);
+                                        $('#type').val(response.type);
+                                        $('#jenis').val(response.jenis);
+                                        $('#model').val(response.model);
+                                        $('#warna').val(response.warna);
+                                        $('#tahun').val(response.tahun);
+                                        $('#isi_silinder').val(response.isi_silinder);
+                                        $('#nomor_mesin').val(response.nomor_mesin);
+                                        $('#nomor_rangka').val(response.nomor_rangka);
+                                        $('#updateId').val(response.id); // Set id untuk update
+                                        $('#deleteId').val(response.id); // Set id untuk delete
+                                    }
+                                });
+                            });
 
-                // Submit form update
-                $('#updateForm').on('submit', function() {
-                    $(this).submit();
-                });
+                            // Submit form update
+                            $('#updateForm').on('submit', function() {
+                                $(this).submit();
+                            });
 
-                // Submit form delete
-                $('#btnDelete').on('click', function() {
-                    $('#deleteForm').submit();
-                });
-            });
+                            // Submit form delete
+                            $('#btnDelete').on('click', function() {
+                                $('#deleteForm').submit();
+                            });
+                        });
+
+                        document.getElementById('btnSendData').addEventListener('click', function() {
+                            let kendaraanId = this.getAttribute('data-id');
+                            document.getElementById('kendaraan_id').value = kendaraanId;
+                            document.getElementById('submitForm').submit();
+
+                        });
         </script>
     @endsection
 @endsection

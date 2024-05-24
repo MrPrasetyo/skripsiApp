@@ -43,7 +43,8 @@
                         </thead>
                         <tbody>
                             @forelse ($data as $item)
-                                <tr class="border-b dark:border-gray-700 text-center items-center justify-center">
+                                <tr
+                                    class="border-b dark:border-gray-700 text-center items-center justify-center">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $item->nomor_plat }}</th>
@@ -51,24 +52,28 @@
                                     <td class="px-4 py-3">{{ $item->merk }}</td>
                                     <td class="px-4 py-3">{{ $item->type }}</td>
                                     <td class="px-4 py-3">{{ $item->tahun }}</td>
-                                    <td class="px-4 py-3">{{ $item->status }}</td>
+                                    <td class="px-4 py-3 text-black font-medium @if ($item->status == 'reject') bg-red-500 @elseif($item->status == 'accept') bg-green-500 @endif">{{ $item->status }}</td>
                                     <td class="px-4 py-3 flex items-center justify-center w-full">
-                                        <form action="{{ route('batalkanPengajuan') }}" id="deletePengajuan" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" name="pengajuanId" value="{{ $item->id }}"
-                                                id="pengajuanId">
-                                            <button type="submit"
-                                                class="btnBatalPengajuan px-4 py-2 bg-red-700 text-bold text-white rounded-xl hover:bg-red-800"
-                                                data-id="{{ $item->id }}">Batal</button>
-                                        </form>
+                                        @if ($item->status == 'pending')
+                                            <form action="{{ route('batalkanPengajuan') }}" id="deletePengajuan"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="pengajuanId" value="{{ $item->id }}"
+                                                    id="pengajuanId">
+                                                <button type="submit"
+                                                    class="btnBatalPengajuan px-4 py-2 bg-red-700 text-bold text-white rounded-xl hover:bg-red-800"
+                                                    data-id="{{ $item->id }}">Batal</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td>No data Available</td>
+                                    <td colspan="7" class="text-center">No data available</td>
                                 </tr>
                             @endforelse
+
                         </tbody>
                     </table>
                 </div>

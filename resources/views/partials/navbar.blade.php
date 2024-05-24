@@ -55,7 +55,7 @@
                                 </li>
                                 @if (Auth::user()->roles == 'admin')
                                 <li>
-                                    <a href="#"
+                                    <a href="{{url('listadmin')}}"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">List Pengajuan</a>
                                 </li>
                                 @endif

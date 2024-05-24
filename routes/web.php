@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\pengajuanController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,15 @@ Route::get('/panduan', function () {
 
 
 // Controller
+
+// Arsip List
+Route::get('/arsip', [adminController::class, 'arsipList'])->name('arsipList');
+
+// Admin List
+Route::get('/listadmin', [adminController::class, 'listAdmin'])->name('listAdmin');
+Route::Get('/rejectadmin', [adminController::class,'rejectAdmin'])->name('rejectAdmin');
+Route::Get('/AcceptAdmin', [adminController::class,'AcceptAdmin'])->name('AcceptAdmin');
+Route::Get('/detailAdmin', [adminController::class, 'detailAdmin'])->name('detailAdmin');
 
 // Submit Data
 Route::match(['GET', 'POST'],'/submitRequest',[pengajuanController::class, 'submitDataPengajuan'])->name('submitDataPengajuan');

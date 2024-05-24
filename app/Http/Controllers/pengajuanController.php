@@ -17,7 +17,7 @@ class pengajuanController extends Controller
             ->join('kendaraan', 'pengajuan.kendaraan_id', '=', 'kendaraan.id')
             ->select('pengajuan.*', 'users.name', 'kendaraan.nomor_plat', 'kendaraan.merk', 'kendaraan.type', 'kendaraan.tahun')
             ->where('pengajuan.user_id', $user_id)
-            ->where('pengajuan.status', 'pending') // Tambahkan kondisi ini
+            // ->where('pengajuan.status', 'pending') // Tambahkan kondisi ini
             ->get();
         
         return view('layouts.listpengajuan', ['data' => $data]);
@@ -25,18 +25,31 @@ class pengajuanController extends Controller
     
     
 
-    public  function submitDataPengajuan(Request $request){
-        $user_id = auth()->user()->id;
-        $dataAjukan = [
-            'user_id' => $user_id,
-            'kendaraan_id' => $request->input('kendaraan_id'),
-            'status' => 'pending',
-        ];
+    public function submitDataPengajuan(Request $request)
+{
+    $user_id = auth()->user()->id;
+    $kendaraan_id = $request->input('kendaraan_id');
 
-        Pengajuan::create($dataAjukan);
-        return redirect()->route('dashboard')->with('success', 'Data berhasil disubmit');
+    // Check if there is a pending pengajuan for the given kendaraan_id
+    $existingPengajuan = Pengajuan::where('kendaraan_id', $kendaraan_id)
+                                  ->where('status', 'pending')
+                                  ->first();
 
+    if ($existingPengajuan) {
+        return redirect()->route('dashboard')->with('error', 'Kendaraan ID sudah ada dengan status pending. Data tidak bisa disubmit.');
     }
+
+    $dataAjukan = [
+        'user_id' => $user_id,
+        'kendaraan_id' => $kendaraan_id,
+        'status' => 'pending',
+    ];
+
+    Pengajuan::create($dataAjukan);
+
+    return redirect()->route('dashboard')->with('success', 'Data berhasil coy');
+}
+
 
     public function batalkanPengajuan(Request $request)
     {
