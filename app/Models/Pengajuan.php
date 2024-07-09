@@ -14,6 +14,9 @@ class Pengajuan extends Model
         'status',
         'tujuan',
         'berangkat_tanggal',
+        'fotostnk',
+        'fotobpkb',
+        'fotoktp',
     ];
 
     protected $table = 'pengajuan';

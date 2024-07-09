@@ -16,5 +16,8 @@ class arsips extends Model
         'status',
         'tujuan',
         'berangkat_tanggal',
+        'fotostnk',
+        'fotobpkb',
+        'fotoktp',
     ];
 }

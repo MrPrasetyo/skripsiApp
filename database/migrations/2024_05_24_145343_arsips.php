@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('status');
             $table->string('tujuan');
             $table->string('berangkat_tanggal');
+            $table->string('fotostnk');
+            $table->string('fotobpkb');
+            $table->string('fotoktp');
         });
     }
 

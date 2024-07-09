@@ -57,22 +57,22 @@ class dashboardController extends Controller
         // Update data
         // DB::table('kendaraan')->where('id', $id)->update($data);
         // dd($id);
-        Kendaraan::where('id',$id)->update($data);
-    
+        Kendaraan::where('id', $id)->update($data);
+
         // Redirect back with success message
         return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate');
     }
-    
+
 
 
 
     public function deleteData(Request $request)
     {
         $id = $request->input('id');
-    
+
         // Hapus data
         DB::table('kendaraan')->where('id', $id)->delete();
-    
+
         // Redirect kembali dengan pesan sukses
         return redirect()->route('dashboard')->with('success', 'Data berhasil dihapus');
     }
@@ -80,6 +80,36 @@ class dashboardController extends Controller
     public function addData(Request $request)
     {
         $user_id = auth()->id(); // Mengambil user_id dari user yang sedang login
+
+        // Mendapatkan file fotoSTNK
+        if ($request->hasFile('fotoSTNK')) {
+            $fotoSTNK = $request->file('fotoSTNK');
+            $fotoSTNKName = time() . '_' . $fotoSTNK->getClientOriginalName(); // Menambahkan timestamp
+            $fotoSTNK->move(public_path('uploads'), $fotoSTNKName); // Menyimpan file ke public/uploads
+        } else {
+            return redirect()->back()->with('error', 'File fotoSTNK tidak ditemukan.');
+        }
+
+
+        // Mendapatkan file fotoBPKB
+        if ($request->hasFile('fotoBPKB')) {
+            $fotoBPKB = $request->file('fotoBPKB');
+            $fotoBPKBName = time() . '_' . $fotoBPKB->getClientOriginalName();
+            $fotoBPKB->move(public_path('uploads'), $fotoBPKBName); // Menyimpan file ke public/uploads
+        } else {
+            return redirect()->back()->with('error', 'File fotoBPKB tidak ditemukan.');
+        }
+
+        // Mendapatkan file fotoKTP
+        if ($request->hasFile('fotoKTP')) {
+            $fotoKTP = $request->file('fotoKTP');
+            $fotoKTPName = time() . '_' . $fotoKTP->getClientOriginalName();
+            $fotoKTP->move(public_path('uploads'), $fotoKTPName); // Menyimpan file ke public/uploads
+        } else {
+            return redirect()->back()->with('error', 'File fotoKTP tidak ditemukan.');
+        }
+
+        // Simpan nama file ke database atau proses lainnya sesuai kebutuhan Anda
         $data = [
             'user_id' => $user_id,
             'nomor_plat' => $request->input('nomor_plat'),
@@ -94,10 +124,14 @@ class dashboardController extends Controller
             'isi_silinder' => $request->input('isi_silinder'),
             'nomor_rangka' => $request->input('nomor_rangka'),
             'nomor_mesin' => $request->input('nomor_mesin'),
+            'fotostnk' => $fotoSTNKName,
+            'fotobpkb' => $fotoBPKBName,
+            'fotoktp' => $fotoKTPName,
         ];
+
         DB::table('kendaraan')->insert($data);
 
-        // Tambahkan alert
+        // Tambahkan alert atau notifikasi
         return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
     }
 }

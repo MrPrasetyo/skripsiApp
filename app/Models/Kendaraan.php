@@ -23,6 +23,9 @@ class Kendaraan extends Model
         'isi_silinder',
         'nomor_rangka',
         'nomor_mesin',
+        'fotostnk',
+        'fotobpkb',
+        'fotoktp',
     ];
 
     protected $table = 'kendaraan';

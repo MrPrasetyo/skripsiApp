@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('isi_silinder');
             $table->string('nomor_rangka');
             $table->string('nomor_mesin');
+            $table->string('fotostnk');
+            $table->string('fotobpkb');
+            $table->string('fotoktp');
             $table->rememberToken();
             $table->timestamps();
         });
