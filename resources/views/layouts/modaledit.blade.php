@@ -15,9 +15,11 @@
             </div>
             <!-- Modal body -->
             {{-- {{dd($item)}} --}}
-            <form action="{{route('updateData',$item->id)}}" method="POST">
+            <form action="{{route('updateData')}}" method="POST">
                 @csrf
                 @method('PUT')
+                
+                <input id="idkendaraan" name="idkendaraan" class="hidden" type="text" value="">
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <label for="nomor_plat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Plat</label>

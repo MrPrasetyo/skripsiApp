@@ -13,7 +13,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-1/2 hidden">
                         <form class="flex items-center">
                             <label for="simple-search" class="sr-only">Search</label>
                             <div class="relative w-full">
@@ -40,8 +40,8 @@
                                 <th scope="col" class="px-4 py-3 text-center">Nomor Plat</th>
                                 <th scope="col" class="px-4 py-3 text-center">Nama Pemilik</th>
                                 <th scope="col" class="px-4 py-3 text-center">Merk</th>
-                                <th scope="col" class="px-4 py-3 text-center">Type</th>
-                                <th scope="col" class="px-4 py-3 text-center">Tahun</th>
+                                <th scope="col" class="px-4 py-3 text-center">Berangkat Tanggal</th>
+                                <th scope="col" class="px-4 py-3 text-center">Tujuan</th>
                                 <th scope="col" class="px-4 py-3 text-center">Actions</th>
                             </tr>
                         </thead>
@@ -56,8 +56,8 @@
                                         {{ $item->nomor_plat }}</th>
                                     <td class="px-4 py-3">{{ $item->nama_pemilik }}</td>
                                     <td class="px-4 py-3">{{ $item->merk }}</td>
-                                    <td class="px-4 py-3">{{ $item->type }}</td>
-                                    <td class="px-4 py-3">{{ $item->tahun }}</td>
+                                    <td class="px-4 py-3">{{ $item->berangkat_tanggal }}</td>
+                                    <td class="px-4 py-3">{{ $item->tujuan }}</td>
                                     <td class="px-3 py-3 flex justify-center items-center">
                                         <button
                                             class="BtnModalAdmin px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
@@ -135,6 +135,8 @@
                     dataType: "JSON",
                     success: function(response) {
                         $('#idDetail').val(response.idpengajuan);
+                        $('#tujuan').val(response.tujuan);
+                        $('#berangkat_tanggal').val(response.berangkat_tanggal);
                         $('#userId').val(response.user_id);
                         $('#kendaraanId').val(response.idKendaraan);
                         $('#nomor_plat').text(response.nomor_plat);
@@ -198,6 +200,8 @@
             let idAccept = $('#idDetail').val();
             let userId = $('#userId').val(); // Pastikan Anda memiliki elemen input dengan id userId
             let kendaraanId = $('#kendaraanId').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let tujuan = $('#tujuan').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let berangkat_tanggal = $('#berangkat_tanggal').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
 
             $.ajax({
                 type: "GET",
@@ -205,7 +209,9 @@
                 data: {
                     id: idAccept,
                     userId: userId,
-                    kendaraanId: kendaraanId
+                    kendaraanId: kendaraanId,
+                    tujuan: tujuan,
+                    berangkat_tanggal: berangkat_tanggal
                 },
                 dataType: "JSON",
                 success: function(response) {

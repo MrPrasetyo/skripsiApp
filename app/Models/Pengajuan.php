@@ -12,6 +12,8 @@ class Pengajuan extends Model
         'user_id',
         'kendaraan_id',
         'status',
+        'tujuan',
+        'berangkat_tanggal',
     ];
 
     protected $table = 'pengajuan';

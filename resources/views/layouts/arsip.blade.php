@@ -10,7 +10,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-1/2 hidden">
                         <form class="flex items-center">
                             <label for="simple-search" class="sr-only">Search</label>
                             <div class="relative w-full">
@@ -37,8 +37,8 @@
                                 <th scope="col" class="px-4 py-3">Nomor Plat</th>
                                 <th scope="col" class="px-4 py-3">Nama Pemilik</th>
                                 <th scope="col" class="px-4 py-3">Merk</th>
-                                <th scope="col" class="px-4 py-3">Type</th>
-                                <th scope="col" class="px-4 py-3">Tgl Pengajuan</th>
+                                <th scope="col" class="px-4 py-3">Tujuan</th>
+                                <th scope="col" class="px-4 py-3">Tanggal Pengajuan</th>
                                 <th scope="col" class="px-6 py-3 ">Status</th>
                                 <th scope="col" class="px-4 py-3 ">Actions</th>
                             </tr>
@@ -51,14 +51,17 @@
                                         {{ $item->nomor_plat }}</th>
                                     <td class="px-4 py-3">{{ $item->nama_pemilik }}</td>
                                     <td class="px-4 py-3">{{ $item->merk }}</td>
-                                    <td class="px-4 py-3">{{ $item->type }}</td>
-                                    <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->tglPengajuan)->format('d-m-Y') }}</td>
-                                    <td class="px-4 py-3">{{ $item->status }}</td>
+                                    <td class="px-4 py-3">{{ $item->tujuan }}</td>
+                                    <td class="px-4 py-3">{{ \Carbon\Carbon::parse($item->tglPengajuan)->format('d-m-Y') }}
+                                    </td>
+                                    <td class="px-4 py-3 text-black font-bold @if ($item->status == 'reject') bg-red-500 @elseif($item->status == 'accept') bg-green-500 @endif">{{ $item->status }}</td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
-                                        <button data-id="{{ $item->idKendaraan }}" class="hover:scale-125 bg-gray-200 p-1 rounded-lg hover:bg-black">
-                                            <svg class="w-6 h-6 text-gray-800 dark:text-white hover:text-white" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="currentColor" viewBox="0 0 24 24">
+                                        <input class="hidden" id="ArsipId" type="text" value="{{ $item->idArsip }}">
+                                        <button data-id="{{ $item->idArsip }}"
+                                            class="downloadPdf hover:scale-125 bg-gray-200 p-1 rounded-lg hover:bg-black">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white hover:text-white"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" fill="currentColor" viewBox="0 0 24 24">
                                                 <path fill-rule="evenodd"
                                                     d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z"
                                                     clip-rule="evenodd" />
@@ -85,6 +88,16 @@
 
 
     @section('script')
+        <script>
+            $(document).ready(function() {
+                $(document).on('click', '.downloadPdf', function() {
+                    let dataId = $(this).attr('data-id');
+                    let previewUrl = "{{ route('generatePdf') }}?id=" + dataId;
+
+                    window.open(previewUrl, '_blank'); // Open the PDF in a new tab for preview
+                });
+            });
+        </script>
     @endsection
 
 @endsection

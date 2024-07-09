@@ -28,10 +28,12 @@ class pengajuanController extends Controller
     public function submitDataPengajuan(Request $request)
 {
     $user_id = auth()->user()->id;
-    $kendaraan_id = $request->input('kendaraan_id');
+    $idkendaraan = $request->input('idaja');
+    $berangkat_tanggal = $request->input('berangkat_tanggal');
+    $tujuan = $request->input('tujuan');
 
     // Check if there is a pending pengajuan for the given kendaraan_id
-    $existingPengajuan = Pengajuan::where('kendaraan_id', $kendaraan_id)
+    $existingPengajuan = Pengajuan::where('kendaraan_id', $idkendaraan)
                                   ->where('status', 'pending')
                                   ->first();
 
@@ -41,9 +43,12 @@ class pengajuanController extends Controller
 
     $dataAjukan = [
         'user_id' => $user_id,
-        'kendaraan_id' => $kendaraan_id,
+        'kendaraan_id' => $idkendaraan,
         'status' => 'pending',
+        'tujuan' => $tujuan,
+        'berangkat_tanggal' => $berangkat_tanggal,
     ];
+
 
     Pengajuan::create($dataAjukan);
 

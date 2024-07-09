@@ -9,7 +9,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-1/2 hidden">
                         <form class="flex items-center">
                             <label for="simple-search" class="sr-only">Search</label>
                             <div class="relative w-full">
@@ -35,8 +35,8 @@
                                 <th scope="col" class="px-4 py-3">Nomor Plat</th>
                                 <th scope="col" class="px-4 py-3">Nama Pemilik</th>
                                 <th scope="col" class="px-4 py-3">Merk</th>
-                                <th scope="col" class="px-4 py-3">Type</th>
-                                <th scope="col" class="px-4 py-3">Tahun</th>
+                                <th scope="col" class="px-4 py-3">Berangkat Tanggal</th>
+                                <th scope="col" class="px-4 py-3">Tujuan</th>
                                 <th scope="col" class="px-4 py-3">Status</th>
                                 <th scope="col" class="px-4 py-3">Actions</th>
                             </tr>
@@ -50,8 +50,8 @@
                                         {{ $item->nomor_plat }}</th>
                                     <td class="px-4 py-3">{{ $item->name }}</td>
                                     <td class="px-4 py-3">{{ $item->merk }}</td>
-                                    <td class="px-4 py-3">{{ $item->type }}</td>
-                                    <td class="px-4 py-3">{{ $item->tahun }}</td>
+                                    <td class="px-4 py-3">{{ $item->berangkat_tanggal }}</td>
+                                    <td class="px-4 py-3">{{ $item->tujuan }}</td>
                                     <td class="px-4 py-3 text-black font-medium @if ($item->status == 'reject') bg-red-500 @elseif($item->status == 'accept') bg-green-500 @endif">{{ $item->status }}</td>
                                     <td class="px-4 py-3 flex items-center justify-center w-full">
                                         @if ($item->status == 'pending')

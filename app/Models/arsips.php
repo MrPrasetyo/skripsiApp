@@ -14,5 +14,7 @@ class arsips extends Model
         'created_at',
         'updated_at',
         'status',
+        'tujuan',
+        'berangkat_tanggal',
     ];
 }

@@ -24,11 +24,21 @@ class dashboardController extends Controller
         return response()->json($dataEdit);
     }
 
-    public function updateData(string $id, Request $request)
+    public function getDataOnly(Request $request)
     {
-        // $id = $request->input('data-id');
+        $id = $request->input('id');
+        $q = "SELECT * FROM kendaraan WHERE id = $id";
+        $data = DB::select($q);
+        $dataEdit = $data[0];
+        return response()->json($dataEdit);
+    }
+
+    public function updateData(Request $request)
+    {
+        $id = $request->input('idkendaraan');
         $user_id = auth()->user()->id;
         $data = [
+            'id' => $id,
             'user_id' => $user_id,
             'nomor_plat' => $request->input('nomor_plat'),
             'nama_pemilik' => $request->input('nama_pemilik'),
@@ -43,9 +53,10 @@ class dashboardController extends Controller
             'nomor_rangka' => $request->input('nomor_rangka'),
             'nomor_mesin' => $request->input('nomor_mesin'),
         ];
-        // dd($id);
+        // dd($data);
         // Update data
         // DB::table('kendaraan')->where('id', $id)->update($data);
+        // dd($id);
         Kendaraan::where('id',$id)->update($data);
     
         // Redirect back with success message

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('kendaraan_id');
             $table->string('status');
+            $table->string('tujuan');
+            $table->string('berangkat_tanggal');
             $table->rememberToken();
             $table->timestamps();
         });

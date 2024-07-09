@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('kendaraan_id');
             $table->timestamps();
             $table->string('status');
+            $table->string('tujuan');
+            $table->string('berangkat_tanggal');
         });
     }
 

@@ -29,6 +29,8 @@
             <input class="hidden" type="text" id="idDetail" value="">
             <input class="hidden" type="text" id="userId" value="">
             <input class="hidden" type="text" id="kendaraanId" value="">
+            <input class="hidden" type="text" id="tujuan" value="">
+            <input class="hidden" type="text" id="berangkat_tanggal" value="">
             <dl class="grid grid-cols-2">
                 <div>
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Plat</dt>

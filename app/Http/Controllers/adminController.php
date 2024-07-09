@@ -40,7 +40,9 @@ class adminController extends Controller
                         c.tahun,
                         c.isi_silinder,
                         c.nomor_rangka,
-                        c.nomor_mesin
+                        c.nomor_mesin,
+                        a.tujuan,
+                        a.berangkat_tanggal
                 FROM pengajuan a
                 JOIN users b ON a.user_id = b.id
                 JOIN kendaraan c ON a.kendaraan_id = c.id
@@ -68,7 +70,9 @@ class adminController extends Controller
                                 c.tahun,
                                 c.isi_silinder,
                                 c.nomor_rangka,
-                                c.nomor_mesin
+                                c.nomor_mesin,
+                                a.tujuan,
+                                a.berangkat_tanggal
                             FROM kendaraan c 
                             JOIN pengajuan a ON a.kendaraan_id = c.id
                             WHERE c.id = $id
@@ -83,6 +87,8 @@ class adminController extends Controller
     {
         $rejectId = $request->input('id');
         $user_id = $request->input('userId');
+        $tujuan = $request->input('tujuan');
+        $berangkat_tanggal = $request->input('berangkat_tanggal');
         $kendaraan_id = $request->input('kendaraanId');
 
         // Update status menjadi 'reject'
@@ -94,7 +100,8 @@ class adminController extends Controller
         $dataReject = [
             'user_id' => $user_id,
             'kendaraan_id' => $kendaraan_id,
-            'created_at' => now(), // Menggunakan helper now() untuk waktu saat ini
+            'tujuan' => $tujuan, // Menggunakan helper now() untuk waktu saat ini
+            'berangkat_tanggal' => $berangkat_tanggal, // Menggunakan helper now() untuk waktu saat ini
             'status' => 'reject'
         ];
         arsips::create($dataReject);
@@ -107,18 +114,21 @@ class adminController extends Controller
     public function AcceptAdmin(Request $request){
         $acceptId = $request->input('id');
         $user_id = $request->input('userId');
+        $tujuan = $request->input('tujuan');
+        $berangkat_tanggal = $request->input('berangkat_tanggal');
         $kendaraan_id = $request->input('kendaraanId');
 
         // Update status menjadi 'reject'
         DB::table('pengajuan')->where('id', $acceptId)->update([
-            'status' => 'reject'
+            'status' => 'accept'
         ]);
 
         // Buat data di tabel Arsip
         $dataAccept = [
             'user_id' => $user_id,
             'kendaraan_id' => $kendaraan_id,
-            'created_at' => now()->format('Y-m-d'), // Menggunakan helper now() untuk waktu saat ini
+            'tujuan' => $tujuan, // Menggunakan helper now() untuk waktu saat ini
+            'berangkat_tanggal' => $berangkat_tanggal, // Menggunakan helper now() untuk waktu saat ini
             'status' => 'accept'
         ];
         arsips::create($dataAccept);
@@ -127,33 +137,33 @@ class adminController extends Controller
         return response()->json(['message' => "Data berhasil disimpan"]);
     }
     public function arsipList()
-    {
-        $user_id = auth()->user()->id;
+{
+    $q = "SELECT a.id AS idArsip,
+                 a.status,
+                 a.created_at AS tglPengajuan,
+                 b.id AS idUsers,
+                 c.id AS idKendaraan,
+                 c.user_id,
+                 c.nomor_plat,
+                 c.nama_pemilik,
+                 c.alamat_pemilik,
+                 c.merk,
+                 c.type,
+                 c.jenis,
+                 c.model,
+                 c.warna,
+                 c.tahun,
+                 c.isi_silinder,
+                 c.nomor_rangka,
+                 c.nomor_mesin,
+                 a.tujuan,
+                 a.berangkat_tanggal
+          FROM arsips a
+          JOIN users b ON a.user_id = b.id
+          JOIN kendaraan c ON a.kendaraan_id = c.id";
 
-        $q = "SELECT a.id AS idArsip,
-                     a.status,
-                     a.created_at AS tglPengajuan,
-                     b.id AS idUsers,
-                     c.id AS idKendaraan,
-                     c.user_id,
-                     c.nomor_plat,
-                     c.nama_pemilik,
-                     c.alamat_pemilik,
-                     c.merk,
-                     c.type,
-                     c.jenis,
-                     c.model,
-                     c.warna,
-                     c.tahun,
-                     c.isi_silinder,
-                     c.nomor_rangka,
-                     c.nomor_mesin
-              FROM arsips a
-              JOIN users b ON a.user_id = b.id
-              JOIN kendaraan c ON a.kendaraan_id = c.id
-              WHERE a.user_id = :user_id";
+    $data = DB::select($q);
+    return view('layouts.arsip', ['data' => $data]);
+}
 
-        $data = DB::select($q, ['user_id' => $user_id]);
-        return view('layouts.arsip', ['data' => $data]);
-    }
 }

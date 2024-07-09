@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\pdfController;
 use App\Http\Controllers\pengajuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('home');
+})->name('home');
 
 Route::get('/home', function () {
     return view('home');
@@ -19,10 +20,17 @@ Route::get('/panduan', function () {
     return view('layouts.panduan');
 })->name('panduan');
 
+Route::get('/testing', function () {
+    return view('Templates.testing');
+})->name('testing');
+
 
 
 
 // Controller
+
+// Generate PDF
+Route::get('/generatePdf', [pdfController::class, 'generatePdf'])->name('generatePdf');
 
 // Arsip List
 Route::get('/arsip', [adminController::class, 'arsipList'])->name('arsipList');
@@ -37,7 +45,7 @@ Route::Get('/detailAdmin', [adminController::class, 'detailAdmin'])->name('detai
 Route::match(['GET', 'POST'],'/submitRequest',[pengajuanController::class, 'submitDataPengajuan'])->name('submitDataPengajuan');
 
 // Update Data
-Route::put('/updateData/{id}', [dashboardController::class, 'updateData'])->name('updateData');
+Route::put('/updateData', [dashboardController::class, 'updateData'])->name('updateData');
 
 // Delete Data
 Route::delete('/deleteData', [dashboardController::class, 'deleteData'])->name('deleteData');
@@ -48,6 +56,7 @@ Route::post('/addData',[dashboardController::class, 'addData'])->name('addData')
 
 // Ajax
 Route::Get('/editData', [dashboardController::class, 'getDataEdit'])->name('getDataEdit');
+Route::Get('/OnlyData', [dashboardController::class, 'getDataOnly'])->name('getDataOnly');
 
 // List Pengajuan
 Route::Get('/pengajuan', [pengajuanController::class, 'listPengajuan'])->name('pengajuan');

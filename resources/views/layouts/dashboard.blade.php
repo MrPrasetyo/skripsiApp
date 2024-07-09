@@ -20,7 +20,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <div class="w-full md:w-1/2">
+                    <div class="w-full md:w-1/2 hidden">
                         <form class="flex items-center">
                             <label for="simple-search" class="sr-only">Search</label>
                             <div class="relative w-full">
@@ -77,15 +77,12 @@
                                     <td class="px-4 py-3">{{ $item->type }}</td>
                                     <td class="px-4 py-3">{{ $item->tahun }}</td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
-                                        <form id="submitForm" action="{{ route('submitDataPengajuan') }}">
-                                            @csrf
-                                            @method('POST')
-                                            <input type="hidden" name="kendaraan_id" id="kendaraan_id"
+                                            <input type="text" class="hidden" name="kendaraan_id" id="kendaraan_id"
                                                 value="{{ $item->id }}">
                                             <button type="submit"
-                                                class="btnSendData px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
+                                                class="btnModalTujuan px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
+                                                data-modal-target="ModalTujuan" data-modal-toggle="ModalTujuan"
                                                 data-id="{{ $item->id }}">Ajukan</button>
-                                        </form>
                                     </td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
                                         <button
@@ -95,7 +92,9 @@
                                     </td>
 
                                 </tr>
+
                                 @include('layouts.modaledit')
+                                @include('layouts.modaltujuan')
                             @empty
                                 <tr>
                                     <td>No data Available</td>
@@ -105,7 +104,7 @@
                     </table>
                 </div>
                 <nav aria-label="Page navigation example">
-                    <ul class="inline-flex -space-x-px text-sm py-3 px-4">
+                    <ul class="inline-flex -space-x-px text-sm py-3 px-4 hidden">
                         <li>
                             <a href="#"
                                 class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
@@ -150,9 +149,6 @@
     @endif
     @section('script')
         <script>
-
-
-
                         $(document).ready(function() {
                             $('.BtnModalEdit').on('click', function() {
                                 let dataId = $(this).attr('data-id');
@@ -164,6 +160,7 @@
                                     },
                                     dataType: "JSON",
                                     success: function(response) {
+                                        $('#idkendaraan').val(response.id);
                                         $('#nomor_plat').val(response.nomor_plat);
                                         $('#nama_pemilik').val(response.nama_pemilik);
                                         $('#alamat_pemilik').val(response.alamat_pemilik);
@@ -199,6 +196,23 @@
                             document.getElementById('submitForm').submit();
 
                         });
+
+                        $(document).ready(function() {
+                            $('.btnModalTujuan').on('click', function() {
+                                let dataId = $(this).attr('data-id');
+                                $.ajax({
+                                    type: "GET",
+                                    url: "{{route('getDataOnly')}}",
+                                    data: {
+                                        id: dataId
+                                    },
+                                    dataType: "JSON",
+                                    success: function (response) {
+                                        $('#idaja').val(response.id);
+                                    }
+                                });
+                            })});
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     @endsection
 @endsection
