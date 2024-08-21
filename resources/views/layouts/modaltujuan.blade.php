@@ -38,6 +38,9 @@
                 @method('POST')
                 <div class="gap-4 mb-4 grid">
                     <input type="text" class="hidden" name="idaja" id="idaja" value="">
+                    <input class="hidden" type="text" id="fotostnk" name="fotostnk">
+                    <input class="hidden" type="text" id="fotobpkb" name="fotobpkb">
+                    <input class="hidden" type="text" id="fotoktp" name="fotoktp">
                     <div class="mt-5">
                         <label for="tujuan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
                             Tujuan</label>

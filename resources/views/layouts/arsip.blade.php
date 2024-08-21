@@ -57,8 +57,9 @@
                                     <td class="px-4 py-3 text-black font-bold @if ($item->status == 'reject') bg-red-500 @elseif($item->status == 'accept') bg-green-500 @endif">{{ $item->status }}</td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
                                         <input class="hidden" id="ArsipId" type="text" value="{{ $item->idArsip }}">
+                                        
                                         <button data-id="{{ $item->idArsip }}"
-                                            class="downloadPdf hover:scale-125 bg-gray-200 p-1 rounded-lg hover:bg-black">
+                                            class="downloadPdf @if ($item->status == 'reject') hidden @endif hover:scale-125 bg-gray-200 p-1 rounded-lg hover:bg-black">
                                             <svg class="w-6 h-6 text-gray-800 dark:text-white hover:text-white"
                                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                                 height="24" fill="currentColor" viewBox="0 0 24 24">

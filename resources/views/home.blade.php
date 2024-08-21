@@ -27,14 +27,14 @@
     <section class="bg-white">
         <div
             class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-            <img class="w-full rounded-xl"
+            <img class="w-full rounded-xl shadow-lg hover:scale-105 ease-in-out duration-300"
                 src="{{asset('images/daftar.jpg')}}"
                 alt="Mari Mendaftar">
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Belum punya Akun? Mari Daftar disini !</h2>
                 <p class="mb-6 font-light text-gray-500 md:text-lg ">Dengan Memiliki Akun Kalian bisa mengakses seluruh Fitur yang ada di Website ini, termasuk untuk Mengajukan Kendaraan Kalian agar bisa dibuatkan Surat Keterangan Jalannya...</p>
                 <a href="{{route('auth.register')}}"
-                    class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                    class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-xl hover:scale-105 ease-in-out duration-300">
                     Daftar Akun
                     <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +55,7 @@
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Bingung bagaimana mengisi Formnya? Lihat Panduan !</h2>
                 <p class="mb-6 font-light text-gray-500 md:text-lg ">Disini disediakan Panduan untuk Mengisi Form serta cara Mengajukan Kendaraan yang kamu miliki, agar bisa dibuatkan Surat Keterangan Jalannya...</p>
                 <a href="{{route('panduan')}}"
-                    class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                    class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-xl hover:scale-105 ease-in-out duration-300">
                     Lihat Panduan
                     <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +65,7 @@
                     </svg>
                 </a>
             </div>
-            <img class="w-full rounded-xl"
+            <img class="w-full rounded-xl shadow-lg hover:scale-105 ease-in-out duration-300"
             src="{{asset('images/bingung.jpg')}}"
             alt="Mari Mendaftar">
         </div>

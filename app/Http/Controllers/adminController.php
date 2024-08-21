@@ -41,6 +41,9 @@ class adminController extends Controller
                         c.isi_silinder,
                         c.nomor_rangka,
                         c.nomor_mesin,
+                        c.fotostnk,
+                        c.fotobpkb,
+                        c.fotoktp,
                         a.tujuan,
                         a.berangkat_tanggal
                 FROM pengajuan a
@@ -71,6 +74,9 @@ class adminController extends Controller
                                 c.isi_silinder,
                                 c.nomor_rangka,
                                 c.nomor_mesin,
+                                c.fotostnk,
+                                c.fotobpkb,
+                                c.fotoktp,
                                 a.tujuan,
                                 a.berangkat_tanggal
                             FROM kendaraan c 
@@ -90,6 +96,9 @@ class adminController extends Controller
         $tujuan = $request->input('tujuan');
         $berangkat_tanggal = $request->input('berangkat_tanggal');
         $kendaraan_id = $request->input('kendaraanId');
+        $fotostnk = $request->input('fotostnk');
+        $fotobpkb = $request->input('fotobpkb');
+        $fotoktp = $request->input('fotoktp');
 
         // Update status menjadi 'reject'
         DB::table('pengajuan')->where('id', $rejectId)->update([
@@ -102,7 +111,10 @@ class adminController extends Controller
             'kendaraan_id' => $kendaraan_id,
             'tujuan' => $tujuan, // Menggunakan helper now() untuk waktu saat ini
             'berangkat_tanggal' => $berangkat_tanggal, // Menggunakan helper now() untuk waktu saat ini
-            'status' => 'reject'
+            'status' => 'reject',
+            'fotostnk' => $fotostnk,
+            'fotobpkb' => $fotobpkb,
+            'fotoktp' => $fotoktp,
         ];
         arsips::create($dataReject);
 
@@ -117,8 +129,11 @@ class adminController extends Controller
         $tujuan = $request->input('tujuan');
         $berangkat_tanggal = $request->input('berangkat_tanggal');
         $kendaraan_id = $request->input('kendaraanId');
+        $fotostnk = $request->input('fotostnk');
+        $fotobpkb = $request->input('fotobpkb');
+        $fotoktp = $request->input('fotoktp');
 
-        // Update status menjadi 'reject'
+        // Update status menjadi 'accept'
         DB::table('pengajuan')->where('id', $acceptId)->update([
             'status' => 'accept'
         ]);
@@ -129,7 +144,10 @@ class adminController extends Controller
             'kendaraan_id' => $kendaraan_id,
             'tujuan' => $tujuan, // Menggunakan helper now() untuk waktu saat ini
             'berangkat_tanggal' => $berangkat_tanggal, // Menggunakan helper now() untuk waktu saat ini
-            'status' => 'accept'
+            'status' => 'accept',
+            'fotostnk' => $fotostnk,
+            'fotobpkb' => $fotobpkb,
+            'fotoktp' => $fotoktp,
         ];
         arsips::create($dataAccept);
 
@@ -156,6 +174,9 @@ class adminController extends Controller
                  c.isi_silinder,
                  c.nomor_rangka,
                  c.nomor_mesin,
+                 c.fotostnk,
+                 c.fotobpkb,
+                 c.fotoktp,
                  a.tujuan,
                  a.berangkat_tanggal
           FROM arsips a

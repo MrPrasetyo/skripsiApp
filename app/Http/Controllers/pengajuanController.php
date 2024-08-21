@@ -31,6 +31,9 @@ class pengajuanController extends Controller
     $idkendaraan = $request->input('idaja');
     $berangkat_tanggal = $request->input('berangkat_tanggal');
     $tujuan = $request->input('tujuan');
+    $fotostnk = $request->input('fotostnk');
+    $fotobpkb = $request->input('fotobpkb');
+    $fotoktp = $request->input('fotoktp');
 
     // Check if there is a pending pengajuan for the given kendaraan_id
     $existingPengajuan = Pengajuan::where('kendaraan_id', $idkendaraan)
@@ -47,12 +50,14 @@ class pengajuanController extends Controller
         'status' => 'pending',
         'tujuan' => $tujuan,
         'berangkat_tanggal' => $berangkat_tanggal,
+        'fotostnk' => $fotostnk,
+        'fotobpkb' => $fotobpkb,
+        'fotoktp' => $fotoktp,
     ];
-
 
     Pengajuan::create($dataAjukan);
 
-    return redirect()->route('dashboard')->with('success', 'Data berhasil coy');
+    return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
 }
 
 

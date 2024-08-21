@@ -2,12 +2,15 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "concurrently \"npm run dev:vite\" \"npm run dev:laravel\"",
+        "dev:vite": "vite",
+        "dev:laravel": "php artisan serve",
         "build": "vite build"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
+        "concurrently": "^8.2.2",
         "flowbite": "^2.3.0",
         "flowbite-typography": "^1.0.3",
         "laravel-vite-plugin": "^1.0",

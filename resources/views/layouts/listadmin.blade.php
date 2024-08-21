@@ -139,6 +139,9 @@
                         $('#berangkat_tanggal').val(response.berangkat_tanggal);
                         $('#userId').val(response.user_id);
                         $('#kendaraanId').val(response.idKendaraan);
+                        $('#fotoStnks').val(response.fotostnk);
+                        $('#fotoBpkbs').val(response.fotobpkb);
+                        $('#fotoKtps').val(response.fotoktp);
                         $('#nomor_plat').text(response.nomor_plat);
                         $('#nama_pemilik').text(response.nama_pemilik);
                         $('#alamat_pemilik').text(response.alamat_pemilik);
@@ -153,6 +156,9 @@
                         $('#nomor_rangka').text(response.nomor_rangka);
                         $('#updateId').text(response.id); // Set id untuk update
                         $('#deleteId').text(response.id); // Set id untuk delete
+                        $('#fotostnk').attr('src', "uploads/" + response.fotostnk);
+                        $('#fotobpkb').attr('src', "uploads/" + response.fotobpkb);
+                        $('#fotoktp').attr('src', "uploads/" + response.fotoktp);
                     }
                 });
             });
@@ -163,6 +169,11 @@
             let idReject = $('#idDetail').val();
             let userId = $('#userId').val(); // Pastikan Anda memiliki elemen input dengan id userId
             let kendaraanId = $('#kendaraanId').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let tujuan = $('#tujuan').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let berangkat_tanggal = $('#berangkat_tanggal').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let fotostnk = $('#fotoStnks').val();
+            let fotobpkb = $('#fotoBpkbs').val();
+            let fotoktp = $('#fotoKtps').val();
 
             $.ajax({
                 type: "GET",
@@ -170,7 +181,12 @@
                 data: {
                     id: idReject,
                     userId: userId,
-                    kendaraanId: kendaraanId
+                    kendaraanId: kendaraanId,
+                    tujuan: tujuan,
+                    berangkat_tanggal: berangkat_tanggal,
+                    fotostnk: fotostnk,
+                    fotobpkb: fotobpkb,
+                    fotoktp: fotoktp
                 },
                 dataType: "JSON",
                 success: function(response) {
@@ -202,6 +218,9 @@
             let kendaraanId = $('#kendaraanId').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
             let tujuan = $('#tujuan').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
             let berangkat_tanggal = $('#berangkat_tanggal').val(); // Pastikan Anda memiliki elemen input dengan id kendaraanId
+            let fotostnk = $('#fotoStnks').val();
+            let fotobpkb = $('#fotoBpkbs').val();
+            let fotoktp = $('#fotoKtps').val();
 
             $.ajax({
                 type: "GET",
@@ -211,7 +230,10 @@
                     userId: userId,
                     kendaraanId: kendaraanId,
                     tujuan: tujuan,
-                    berangkat_tanggal: berangkat_tanggal
+                    berangkat_tanggal: berangkat_tanggal,
+                    fotostnk: fotostnk,
+                    fotobpkb: fotobpkb,
+                    fotoktp: fotoktp
                 },
                 dataType: "JSON",
                 success: function(response) {

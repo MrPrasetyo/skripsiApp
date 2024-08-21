@@ -15,6 +15,7 @@
 
 @section('content')
     @include('partials.navbar')
+
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -79,6 +80,9 @@
                                     <td class="px-3 py-3 flex-row justify-center items-center">
                                             <input type="text" class="hidden" name="kendaraan_id" id="kendaraan_id"
                                                 value="{{ $item->id }}">
+                                                <input class="hidden" type="text" id="fotostnk" name="fotostnk" value="{{$item->fotostnk}}">
+                                                <input class="hidden" type="text" id="fotobpkb" name="fotobpkb" value="{{$item->fotobpkb}}">
+                                                <input class="hidden" type="text" id="fotoktp" name="fotoktp" value="{{$item->fotoktp}}">
                                             <button type="submit"
                                                 class="btnModalTujuan px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
                                                 data-modal-target="ModalTujuan" data-modal-toggle="ModalTujuan"
@@ -209,6 +213,9 @@
                                     dataType: "JSON",
                                     success: function (response) {
                                         $('#idaja').val(response.id);
+                                        $('#fotostnk').val(response.fotostnk);
+                                        $('#fotobpkb').val(response.fotobpkb);
+                                        $('#fotoktp').val(response.fotoktp);
                                     }
                                 });
                             })});

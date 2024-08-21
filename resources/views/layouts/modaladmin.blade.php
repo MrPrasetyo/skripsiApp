@@ -1,10 +1,10 @@
 <!-- Modal toggle -->
 <!-- Main modal -->
 <div id="ModalAdmin" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
+    class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full overflow-x-hidden bg-gray-800 bg-opacity-50">
+    <div class="relative w-full max-w-2xl h-full md:h-auto bg-white rounded-lg shadow dark:bg-gray-800">
         <!-- Modal content -->
-        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+        <div class="p-4 overflow-y-auto h-full max-h-[90vh]">
             <!-- Modal header -->
             <div class="flex justify-between mb-4 rounded-t sm:mb-5">
                 <div class="text-lg text-gray-900 md:text-xl dark:text-white">
@@ -31,6 +31,9 @@
             <input class="hidden" type="text" id="kendaraanId" value="">
             <input class="hidden" type="text" id="tujuan" value="">
             <input class="hidden" type="text" id="berangkat_tanggal" value="">
+            <input class="hidden" type="text" id="fotoStnks" value="">
+            <input class="hidden" type="text" id="fotoBpkbs" value="">
+            <input class="hidden" type="text" id="fotoKtps" value="">
             <dl class="grid grid-cols-2">
                 <div>
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Plat</dt>
@@ -82,6 +85,18 @@
                 <div class="col-span-2">
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Rangka</dt>
                     <dd id="nomor_rangka" class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">-</dd>
+                </div>
+                <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
+                    <label for="Foto STNK">Foto STNK</label>
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotostnk" alt="Foto STNK">
+                </div>
+                <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
+                    <label for="Foto BPKB">Foto BPKB</label>
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotobpkb" alt="Foto STNK">
+                </div>
+                <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
+                    <label for="Foto KTP">Foto KTP</label>
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotoktp" alt="Foto STNK">
                 </div>
             </dl>
             <div class="flex items-center justify-end gap-3">
