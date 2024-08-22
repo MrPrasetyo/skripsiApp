@@ -88,15 +88,15 @@
                 </div>
                 <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
                     <label for="Foto STNK">Foto STNK</label>
-                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotostnk" alt="Foto STNK">
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] transition-all ease-in-out duration-400" src="" id="fotostnk" alt="Foto STNK">
                 </div>
                 <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
                     <label for="Foto BPKB">Foto BPKB</label>
-                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotobpkb" alt="Foto STNK">
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] transition-all ease-in-out duration-400" src="" id="fotobpkb" alt="Foto STNK">
                 </div>
                 <div class="col-span-2 justify-center items-center flex flex-col gap-y-5 my-2">
                     <label for="Foto KTP">Foto KTP</label>
-                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] ease-in-out duration-400" src="" id="fotoktp" alt="Foto STNK">
+                    <img class="max-w-screen max-h-[50dvh] bg-cover hover:scale-[2] transition-all ease-in-out duration-400" src="" id="fotoktp" alt="Foto STNK">
                 </div>
             </dl>
             <div class="flex items-center justify-end gap-3">

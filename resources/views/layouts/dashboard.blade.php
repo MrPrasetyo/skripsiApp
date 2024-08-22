@@ -19,7 +19,7 @@
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden p-5">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="w-full md:w-1/2 hidden">
                         <form class="flex items-center">
@@ -55,7 +55,7 @@
                 </div>
                 @include('layouts.modaltambah')
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table id="myTable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Nomor Plat</th>
@@ -78,15 +78,12 @@
                                     <td class="px-4 py-3">{{ $item->type }}</td>
                                     <td class="px-4 py-3">{{ $item->tahun }}</td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
-                                            <input type="text" class="hidden" name="kendaraan_id" id="kendaraan_id"
-                                                value="{{ $item->id }}">
-                                                <input class="hidden" type="text" id="fotostnk" name="fotostnk" value="{{$item->fotostnk}}">
-                                                <input class="hidden" type="text" id="fotobpkb" name="fotobpkb" value="{{$item->fotobpkb}}">
-                                                <input class="hidden" type="text" id="fotoktp" name="fotoktp" value="{{$item->fotoktp}}">
-                                            <button type="submit"
-                                                class="btnModalTujuan px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
-                                                data-modal-target="ModalTujuan" data-modal-toggle="ModalTujuan"
-                                                data-id="{{ $item->id }}">Ajukan</button>
+                                        <input type="text" class="hidden" name="kendaraan_id" id="kendaraan_id"
+                                            value="{{ $item->id }}">
+                                        <button type="submit"
+                                            class="btnModalTujuan px-4 py-2 bg-primary-700 text-bold text-white rounded-xl hover:bg-primary-800"
+                                            data-modal-target="ModalTujuan" data-modal-toggle="ModalTujuan"
+                                            data-id="{{ $item->id }}">Ajukan</button>
                                     </td>
                                     <td class="px-3 py-3 flex-row justify-center items-center">
                                         <button
@@ -107,38 +104,6 @@
                         </tbody>
                     </table>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="inline-flex -space-x-px text-sm py-3 px-4 hidden">
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 text-gray-700 border border-gray-300 bg-white hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </section>
@@ -153,72 +118,76 @@
     @endif
     @section('script')
         <script>
-                        $(document).ready(function() {
-                            $('.BtnModalEdit').on('click', function() {
-                                let dataId = $(this).attr('data-id');
-                                $.ajax({
-                                    type: "GET",
-                                    url: "{{ route('getDataEdit') }}",
-                                    data: {
-                                        id: dataId
-                                    },
-                                    dataType: "JSON",
-                                    success: function(response) {
-                                        $('#idkendaraan').val(response.id);
-                                        $('#nomor_plat').val(response.nomor_plat);
-                                        $('#nama_pemilik').val(response.nama_pemilik);
-                                        $('#alamat_pemilik').val(response.alamat_pemilik);
-                                        $('#merk').val(response.merk);
-                                        $('#type').val(response.type);
-                                        $('#jenis').val(response.jenis);
-                                        $('#model').val(response.model);
-                                        $('#warna').val(response.warna);
-                                        $('#tahun').val(response.tahun);
-                                        $('#isi_silinder').val(response.isi_silinder);
-                                        $('#nomor_mesin').val(response.nomor_mesin);
-                                        $('#nomor_rangka').val(response.nomor_rangka);
-                                        $('#updateId').val(response.id); // Set id untuk update
-                                        $('#deleteId').val(response.id); // Set id untuk delete
-                                    }
-                                });
-                            });
+            $(document).ready(function() {
+                $('#myTable').DataTable();
+            });
+            $(document).ready(function() {
+                $('.BtnModalEdit').on('click', function() {
+                    let dataId = $(this).attr('data-id');
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('getDataEdit') }}",
+                        data: {
+                            id: dataId
+                        },
+                        dataType: "JSON",
+                        success: function(response) {
+                            $('#idkendaraan').val(response.id);
+                            $('#nomor_plat').val(response.nomor_plat);
+                            $('#nama_pemilik').val(response.nama_pemilik);
+                            $('#alamat_pemilik').val(response.alamat_pemilik);
+                            $('#merk').val(response.merk);
+                            $('#type').val(response.type);
+                            $('#jenis').val(response.jenis);
+                            $('#model').val(response.model);
+                            $('#warna').val(response.warna);
+                            $('#tahun').val(response.tahun);
+                            $('#isi_silinder').val(response.isi_silinder);
+                            $('#nomor_mesin').val(response.nomor_mesin);
+                            $('#nomor_rangka').val(response.nomor_rangka);
+                            $('#updateId').val(response.id); // Set id untuk update
+                            $('#deleteId').val(response.id); // Set id untuk delete
+                        }
+                    });
+                });
 
-                            // Submit form update
-                            $('#updateForm').on('submit', function() {
-                                $(this).submit();
-                            });
+                // Submit form update
+                $('#updateForm').on('submit', function() {
+                    $(this).submit();
+                });
 
-                            // Submit form delete
-                            $('#btnDelete').on('click', function() {
-                                $('#deleteForm').submit();
-                            });
-                        });
+                // Submit form delete
+                $('#btnDelete').on('click', function() {
+                    $('#deleteForm').submit();
+                });
+            });
 
-                        document.getElementById('btnSendData').addEventListener('click', function() {
-                            let kendaraanId = this.getAttribute('data-id');
-                            document.getElementById('kendaraan_id').value = kendaraanId;
-                            document.getElementById('submitForm').submit();
+            document.getElementById('btnSendData').addEventListener('click', function() {
+                let kendaraanId = this.getAttribute('data-id');
+                document.getElementById('kendaraan_id').value = kendaraanId;
+                document.getElementById('submitForm').submit();
 
-                        });
+            });
 
-                        $(document).ready(function() {
-                            $('.btnModalTujuan').on('click', function() {
-                                let dataId = $(this).attr('data-id');
-                                $.ajax({
-                                    type: "GET",
-                                    url: "{{route('getDataOnly')}}",
-                                    data: {
-                                        id: dataId
-                                    },
-                                    dataType: "JSON",
-                                    success: function (response) {
-                                        $('#idaja').val(response.id);
-                                        $('#fotostnk').val(response.fotostnk);
-                                        $('#fotobpkb').val(response.fotobpkb);
-                                        $('#fotoktp').val(response.fotoktp);
-                                    }
-                                });
-                            })});
+            $(document).ready(function() {
+                $('.btnModalTujuan').on('click', function() {
+                    let dataId = $(this).attr('data-id');
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('getDataOnly') }}",
+                        data: {
+                            id: dataId
+                        },
+                        dataType: "JSON",
+                        success: function(response) {
+                            $('#idaja').val(response.id);
+                            $('#fotostnk').val(response.fotostnk);
+                            $('#fotobpkb').val(response.fotobpkb);
+                            $('#fotoktp').val(response.fotoktp);
+                        }
+                    });
+                })
+            });
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     @endsection

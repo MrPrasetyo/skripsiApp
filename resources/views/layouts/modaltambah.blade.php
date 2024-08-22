@@ -28,52 +28,52 @@
                 @csrf
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
-                        <label for="nomor_plat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Plat</label>
-                        <input type="text" name="nomor_plat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Nomor Plat" required="">
+                        <x-label-c for="nomor_plat" label="Nomor Plat"/>
+                        <x-input-c name="nomor_plat" type="text" placeholder="Masukkan Nomor Plat" />
                     </div>
                     <div>
-                        <label for="nama_pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label>
-                        <input type="text" name="nama_pemilik" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Nama Sesuai STNK" required="">
+                        <x-label-c for="nama_pemilik" label="Nama Pemilik"/>
+                        <x-input-c name='nama_pemilik' type="text" placeholder="Masukkan Nama Sesuai STNK"/>
                     </div>
                     <div class="col-span-2">
-                        <label for="alamat_pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Pemilik</label>
+                        <x-label-c for="alamat_pemilik" label="Alamat Pemilik"/>
                         <textarea name="alamat_pemilik" rows="3" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Alamat Sesuai STNK"></textarea>                    
                     </div>
                     <div>
-                        <label for="merk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Merk</label>
-                        <input type="text" name="merk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Merk sesuai STNK" required="">
+                        <x-label-c for="merk" label="Merk"/>
+                        <x-input-c name='merk' type="text" placeholder="Masukkan Merk Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                        <input type="text" name="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Type sesuai STNK" required="">
+                        <x-label-c for="type" label="Type"/>
+                        <x-input-c name='type' type="text" placeholder="Masukkan Type Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis</label>
-                        <input type="text" name="jenis" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Jenis sesuai STNK" required="">
+                        <x-label-c for="jenis" label="Jenis"/>
+                        <x-input-c name='jenis' type="text" placeholder="Masukkan Jenis Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                        <input type="text" name="model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Model sesuai STNK" required="">
+                        <x-label-c for="model" label="Model"/>
+                        <x-input-c name='model' type="text" placeholder="Masukkan Model Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="warna" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Warna</label>
-                        <input type="text" name="warna" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Warna sesuai STNK" required="">
+                        <x-label-c for="warna" label="Warna"/>
+                        <x-input-c name='warna' type="text" placeholder="Masukkan Warna Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tahun</label>
-                        <input type="text" name="tahun" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Tahun sesuai STNK" required="">
+                        <x-label-c for="tahun" label="Tahun"/>
+                        <x-input-c name='tahun' type="text" placeholder="Masukkan Tahun Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="isi_silinder" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Isi Silinder</label>
-                        <input type="text" name="isi_silinder" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Isi Silinder sesuai STNK" required="">
+                        <x-label-c for="isi_silinder" label="Isi Silinder"/>
+                        <x-input-c name='isi_silinder' type="text" placeholder="Masukkan Type Sesuai STNK"/>
                     </div>
                     <div>
-                        <label for="nomor_mesin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Mesin</label>
-                        <input type="text" name="nomor_mesin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Nomor Mesin sesuai STNK" required="">
+                        <x-label-c for="nomor_mesin" label="Nomor Mesin"/>
+                        <x-input-c name='nomor_mesin' type="text" placeholder="Masukkan Type Sesuai STNK"/>
                     </div>
                     <div class="col-span-2">
-                        <label for="nomor_rangka" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Rangka</label>
-                        <input type="text" name="nomor_rangka" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan Nomor Rangka sesuai STNK" required="">
+                        <x-label-c for="nomor_rangka" label="Nomor Rangka"/>
+                        <x-input-c name='nomor_rangka' type="text" placeholder="Masukkan Type Sesuai STNK"/>
                     </div>
                     <div class="col-span-2 flex flex-col gap-y-5">
                         <label for="fotoSTNK">Masukkan Foto STNK</label>
